@@ -1,0 +1,20 @@
+{
+  "name": "preentrega1proyectofinal",
+  "version": "1.0.0",
+  "description": "Productos y carritos en servidor con express",
+  "main": "./src/app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/app.js",
+    "start":"node ./src/app.js"
+  },
+  "keywords": [],
+  "author": "Efren García",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22"
+  }
+}
