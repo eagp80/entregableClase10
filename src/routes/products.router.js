@@ -2,16 +2,16 @@ import {Router} from "express";
 import uploader from "../services/uploader.js";
 import ProductManager from '../productManager.js'
 const productManager = new ProductManager("./products.json");
-productManager.addProduct("Producto 1", "Descripción del producto 1", "code1",2000,true, 10, "A1", "imagen/logo1.jpg");
-productManager.addProduct("Producto 2", "Descripción del producto 2", "code2",2000,true,10, "A1","imagen/logo2.jpg");
-productManager.addProduct("Producto 3", "Descripción del producto 3", "code3",2000,true,10, "A1","imagen/logo3.jpg");
-productManager.addProduct("Producto 4", "Descripción del producto 4", "code4",2000,true,10,"A1", "imagen/logo4.jpg");
-productManager.addProduct("Producto 5", "Descripción del producto 5", "code5",2000,true,10, "A1","imagen/logo5.jpg");
-productManager.addProduct("Producto 6", "Descripción del producto 6", "code6",2000,true,10,"A1", "imagen/logo6.jpg");
-productManager.addProduct("Producto 7", "Descripción del producto 7", "code7",2000,true,10,"A1", "imagen/logo7.jpg");
-productManager.addProduct("Producto 8", "Descripción del producto 8", "code8",2000,true,10,"A1", "imagen/logo8.jpg");
-productManager.addProduct("Producto 9", "Descripción del producto 9", "code9",2000,true,10,"A1", "imagen/logo9.jpg");
-productManager.addProduct("Producto 10", "Descripción del producto 10", "code10",2000,true,10,"A1", "imagen/logo10.jpg");
+// productManager.addProduct("Producto 1", "Descripción del producto 1", "code1",2000,true, 10, "A1", "imagen/logo1.jpg");
+// productManager.addProduct("Producto 2", "Descripción del producto 2", "code2",2000,true,10, "A1","imagen/logo2.jpg");
+// productManager.addProduct("Producto 3", "Descripción del producto 3", "code3",2000,true,10, "A1","imagen/logo3.jpg");
+// productManager.addProduct("Producto 4", "Descripción del producto 4", "code4",2000,true,10,"A1", "imagen/logo4.jpg");
+// productManager.addProduct("Producto 5", "Descripción del producto 5", "code5",2000,true,10, "A1","imagen/logo5.jpg");
+// productManager.addProduct("Producto 6", "Descripción del producto 6", "code6",2000,true,10,"A1", "imagen/logo6.jpg");
+// productManager.addProduct("Producto 7", "Descripción del producto 7", "code7",2000,true,10,"A1", "imagen/logo7.jpg");
+// productManager.addProduct("Producto 8", "Descripción del producto 8", "code8",2000,true,10,"A1", "imagen/logo8.jpg");
+// productManager.addProduct("Producto 9", "Descripción del producto 9", "code9",2000,true,10,"A1", "imagen/logo9.jpg");
+// productManager.addProduct("Producto 10", "Descripción del producto 10", "code10",2000,true,10,"A1", "imagen/logo10.jpg");
 
 const router= Router(); //mini aplicativo para redirigirme a otros lugares
 
