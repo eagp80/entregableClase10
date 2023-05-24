@@ -4,6 +4,14 @@ import ProductManager from '../productManager.js'
 const productManager = new ProductManager("./products.json");
 const products =productManager.getProducts();
 productManager.products=products;
+
+const ids = products.map(product => product.id);
+console.log(ids);
+if(products.length!=0){
+    ProductManager.contador = Math.max(...ids)+1;
+} else {ProductManager.contador =1};
+
+
 //productManager.addProduct("Producto 1", "Descripción del producto 1", "code1",2000,true, 10, "A1", "imagen/logo1.jpg");
 // productManager.addProduct("Producto 2", "Descripción del producto 2", "code2",2000,true,10, "A1","imagen/logo2.jpg");
 // productManager.addProduct("Producto 3", "Descripción del producto 3", "code3",2000,true,10, "A1","imagen/logo3.jpg");
@@ -19,7 +27,6 @@ const router= Router(); //mini aplicativo para redirigirme a otros lugares
 
 router.get('/', (req,res)=>{
     let limit=req.query.limit;
-    const productManager = new ProductManager("./products.json");
     let productsX= productManager.getProducts();
     
     if(limit){
@@ -40,7 +47,6 @@ router.get('/', (req,res)=>{
 
 router.get('/:pid', (req,res)=>{
     const pid=req.params.pid;
-    const productManager = new ProductManager("./products.json");
     let producto= productManager.getProductById(pid); 
     if(!producto){
         res.send({error:"El producto no existe."});
@@ -54,10 +60,7 @@ router.post('/',uploader.single('image'), (req,res)=>{
 //router.post('/', (req,res)=>{
 
     //con este metodo solicitamos crear producto
-    const {titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX, image} = req.body;
-      
-    //const productManager = new ProductManager("./products.json");
-    console.log(productManager);    
+    const {titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX, image} = req.body;       
     const productsX= productManager.getProducts();
     console.log(`productos X ${productsX}`);
     productManager.addProduct(titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX);
