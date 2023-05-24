@@ -2,7 +2,9 @@ import {Router} from "express";
 import uploader from "../services/uploader.js";
 import ProductManager from '../productManager.js'
 const productManager = new ProductManager("./products.json");
-// productManager.addProduct("Producto 1", "Descripción del producto 1", "code1",2000,true, 10, "A1", "imagen/logo1.jpg");
+const products =productManager.getProducts();
+productManager.products=products;
+//productManager.addProduct("Producto 1", "Descripción del producto 1", "code1",2000,true, 10, "A1", "imagen/logo1.jpg");
 // productManager.addProduct("Producto 2", "Descripción del producto 2", "code2",2000,true,10, "A1","imagen/logo2.jpg");
 // productManager.addProduct("Producto 3", "Descripción del producto 3", "code3",2000,true,10, "A1","imagen/logo3.jpg");
 // productManager.addProduct("Producto 4", "Descripción del producto 4", "code4",2000,true,10,"A1", "imagen/logo4.jpg");
@@ -19,6 +21,7 @@ router.get('/', (req,res)=>{
     let limit=req.query.limit;
     const productManager = new ProductManager("./products.json");
     let productsX= productManager.getProducts();
+    
     if(limit){
         //enviar cantidad de productos igual a limit
         let arr=[];
@@ -51,14 +54,13 @@ router.post('/',uploader.single('image'), (req,res)=>{
 //router.post('/', (req,res)=>{
 
     //con este metodo solicitamos crear producto
-    const {title, description, code,price,status, stock, category, thumbnails, image} = req.body;
-    //console.log({title});
-    
-    //const productManager = new ProductManager("./products.txt");
-    //users.push(user);
-    //const arr=[title, description, price,thumbnail,code, stock, image];
-    //console.log(arr);
-    productManager.addProduct(title, description, code,price,status, stock, category, thumbnails);
+    const {titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX, image} = req.body;
+      
+    //const productManager = new ProductManager("./products.json");
+    console.log(productManager);    
+    const productsX= productManager.getProducts();
+    console.log(`productos X ${productsX}`);
+    productManager.addProduct(titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX);
     res.send({status:"ok", message :"producto añadido" });
 
 })
