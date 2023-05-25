@@ -68,7 +68,7 @@ router.post('/',uploader.single('image'), (req,res)=>{
 
 })// falta revisar si se guarda formatos de arreglo de thumbnails y formatos numnber, true y string
 router.put('/:pid',uploader.single('image'), (req,res)=>{
-    //con este metodo solicitamos actualizar usuario
+    //con este metodo solicitamos actualizar producto
     const pid=req.params.pid;
     //const productsX= productManager.getProducts();   
     const {title, description, code,price,status, stock, category, thumbnails, image} = req.body; 
@@ -78,8 +78,11 @@ router.put('/:pid',uploader.single('image'), (req,res)=>{
     productManager.updateProduct(pid,{title, description, code,price,status, stock, category, thumbnails});
     res.send({status:"ok", message :`producto con id: ${pid}, actualizado`});  
 })
-router.delete('/', (req,res)=>{
-    //con este metodo solicitamos borrar usuario
+router.delete('/:pid', (req,res)=>{
+    //con este metodo solicitamos borrar producto
+    const pid=req.params.pid;
+    productManager.deleteProduct(pid);
+    res.send({status:"ok", message :`producto con id: ${pid}, eliminado`});
        
 })
 

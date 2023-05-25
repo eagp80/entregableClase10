@@ -102,7 +102,7 @@ deleteProduct(Id) {
       }
 
       let products = JSON.parse(data);
-      const productIndex = products.findIndex((p) => p.id === Id);
+      const productIndex = products.findIndex((p) => p.id == Id);
 
       if (productIndex !== -1) {
           products.splice(productIndex, 1);
