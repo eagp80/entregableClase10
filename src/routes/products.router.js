@@ -66,7 +66,7 @@ router.post('/',uploader.single('image'), (req,res)=>{
     productManager.addProduct(title, description, code,price,status, stock, category, thumbnails);
     res.send({status:"ok", message :"producto añadido" });
 
-})// falta revisar si se guarda fromatos de arreglo de thumbnails y formatos numnber, true y string
+})// falta revisar si se guarda formatos de arreglo de thumbnails y formatos numnber, true y string
 router.put('/:pid',uploader.single('image'), (req,res)=>{
     //con este metodo solicitamos actualizar usuario
     const pid=req.params.pid;
