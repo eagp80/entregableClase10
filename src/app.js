@@ -35,7 +35,7 @@ app.use('/api/carts',cartsRouter);//conectar con
 // });
 
 app.listen(
-    8080,()=>console.log("Servidor Efren activado en pueto 8080")
+    8080,()=>console.log("Servidor Efren activado en puerto 8080")
 );
 // let usuarios = [
 //     {nombre:"Efren", apellido:"García", edad: 42, correo:"eagp80@gmail.com", genero:"M"},

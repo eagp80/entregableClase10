@@ -72,18 +72,22 @@ export default class ProductManager {
     // return this.products[indexProduct];
   }
 //Actualizar un producto
-updateProduct(Id, { title, description, price, thumbnail, stock } = {}) {
-  const productIndex = this.products.findIndex((p) => p.id == Id);
+updateProduct(Id, { title, description,code, price, status, stock, category, thumbnails }) {//se inicializa elementos del objeto como undefined
+  const productIndex = this.products.findIndex((p) => p.id == Id);// exepto el Id
   if (productIndex !== -1) {
-      const product = this.products[productIndex];
-      product.title = title || product.title;
-      product.description = description || product.description;
+    console.log(title);
+      const product = this.products[productIndex];//en products cambiaremos solo los campos recibidos
+      product.title = title||product.title; // los campos undefined se ignoran
+      product.description = description || product.description;//los campos que si reciben un valor si se cambian
+      product.code = code || product.code;
       product.price = price || product.price;
-      product.thumbnail = thumbnail || product.thumbnail;
+      product.status = status || product.status;
       product.stock = stock || product.stock;
-      this.products[productIndex] = product;
-      fs.writeFileSync(this.path, JSON.stringify(this.products), 'utf8');
-      console.log(`Producto con id ${Id} ha sido actualizado.`);
+      product.category = category||product.category;
+      product.thumbnails = thumbnails || product.thumbnails;//el product.id no se tocó, queda igual
+      this.products[productIndex] = product;// se reemplaza  solo el producto con el indice correspondiente pero indice queda igual
+      fs.writeFileSync(this.path, JSON.stringify(this.products), 'utf8');// el resto del arreglo products queda igual
+      console.log(`Producto con id ${Id} ha sido actualizado.`); //se pasa el arreglo products a string y se escribe en el path 
   } else {
       console.log(`Producto con código ${Id} no encontrado.`);
   }

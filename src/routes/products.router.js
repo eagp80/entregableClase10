@@ -60,16 +60,23 @@ router.post('/',uploader.single('image'), (req,res)=>{
 //router.post('/', (req,res)=>{
 
     //con este metodo solicitamos crear producto
-    const {titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX, image} = req.body;       
-    const productsX= productManager.getProducts();
-    console.log(`productos X ${productsX}`);
-    productManager.addProduct(titleX, descriptionX, codeX,priceX,statusX, stockX, categoryX, thumbnailsX);
+    const {title, description, code,price,status, stock, category, thumbnails, image} = req.body;       
+    //const productsX= productManager.getProducts();
+    //console.log(`productos X ${productsX}`);
+    productManager.addProduct(title, description, code,price,status, stock, category, thumbnails);
     res.send({status:"ok", message :"producto añadido" });
 
-})
-router.put('/', (req,res)=>{
+})// falta revisar si se guarda fromatos de arreglo de thumbnails y formatos numnber, true y string
+router.put('/:pid',uploader.single('image'), (req,res)=>{
     //con este metodo solicitamos actualizar usuario
-       
+    const pid=req.params.pid;
+    //const productsX= productManager.getProducts();   
+    const {title, description, code,price,status, stock, category, thumbnails, image} = req.body; 
+    //const objAux ={title, description, code,price,status, stock, category, thumbnails};
+
+    //console.log(objAux);
+    productManager.updateProduct(pid,{title, description, code,price,status, stock, category, thumbnails});
+    res.send({status:"ok", message :`producto con id: ${pid}, actualizado`});  
 })
 router.delete('/', (req,res)=>{
     //con este metodo solicitamos borrar usuario
