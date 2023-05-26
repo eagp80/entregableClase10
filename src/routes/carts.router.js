@@ -14,27 +14,20 @@ if(carts.length!=0){
 
 const router=Router();
 
-const pets=[{nombre:"gato", edad: 2}];
-router.get('/', (req,res)=>{
-    const carts = cartManager.getCarts();
-    res.send(carts); //con este metodo solicitamos usuario
-});
-
 router.get('/:cid', (req,res)=>{
     const cid=req.params.cid;
     let cart= cartManager.getCartById(cid); 
     if(!cart){
-        res.send({error:"El producto no existe."});
+        res.send({error:"El carrito no existe."});
     }   
-    else {
-        
-        res.send({productos:cart.products})}; 
+    else {        
+        res.send({productos:cart.products})};//envia productos dentro de acrrito con id especificado 
 })
 
-//router.post('/', (req,res)=>{//con este metodo solicitamos crear pet
+
 router.post('/',(req,res)=>{//si son varios archivos uploader.array('nombre de campos') se almacena en req.files
     cartManager.addCart();
-    res.send({status:"ok", message :"Carrito añadido" });
+    res.send({status:"ok", message :"Carrito añadido (con array de productos vaío)" });
 
 })
 
@@ -46,16 +39,16 @@ router.post('/:cid/product/:pid', (req,res)=>{
         cartManager.updateCart(cid,pid);
         res.send({status:"ok", message :`Producto ${pid} añadido al carrito ${cid}`});
     
-    })// falta revisar si se guarda formatos de arreglo de thumbnails y formatos numnber, true y string
+    })
 
 router.put('/', (req,res)=>{
-    //con este metodo solicitamos actualizar usuario
+    //este metodo no se utiliza
        
 })
 router.delete('/', (req,res)=>{
-    //con este metodo solicitamos borrar usuario
+    //este metodo no se utiliza
        
 })
 
 
-export default router; //cuando se hace export se hace para que otras partes pueda importarlo
+export default router; 

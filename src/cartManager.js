@@ -9,8 +9,7 @@ export default class CartManager {
   }
   static contador = 0;
 
-  addCart() {
-        
+  addCart() {        
     const newCart = {      
       id: CartManager.contador,
       products: []        
@@ -21,8 +20,7 @@ export default class CartManager {
       if (!this.path) {
         return console.error("Debe dar Ud. la ruta del archivo.");
       }
-      fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');
-      //fs.writeFileSync(this.path, JSON.parse(this.products), 'utf8');    
+      fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');          
   }
 
 
@@ -32,7 +30,7 @@ export default class CartManager {
     return carts;
   }
 
-  getCartById(Id) {//retornara los productos del carrito 
+  getCartById(Id) {//retornara cart con Id dentro de carts 
     const carts =this.getCarts();
     const cart = carts.find((c) => c.id == Id);//ojo no === sino == porque viene de navegador (string)
         if (cart) {
@@ -40,28 +38,20 @@ export default class CartManager {
         } else {
             console.error(`Not found cart`); 
             return;         
-        }
-    // const indexProduct = this.products.findIndex(p => p.id === Id);
-    // if (indexProduct === -1) {
-    //   console.log("Not found");
-    //   return "Not found";
-    // }
-    // console.log("El productos es:", this.products[indexProduct]);
-    // return this.products[indexProduct];
+        }    
   }
-//Actualizar un producto
+//Actualizar un carrito añadiendo al  carrito con id dado el id de producto
 updateCart(cid, pid) {
   const carts =this.getCarts();
   const cartIndex = carts.findIndex((c) => c.id == cid);
   if (cartIndex !== -1) {
-    //falta hacer alguna logica para actualizar algo en carrito
       const cart = carts[cartIndex];//
       if(cart.products.length>0){
         const indexProductId = cart.products.findIndex((p)=>p.productId==pid);
         if(indexProductId !==-1){
           this.carts[cartIndex].products[indexProductId].quantity++;
-          fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');// el resto del arreglo products queda igual
-          console.log(`Carrito con id ${pid} ha sido actualizado.`); //se pasa el arreglo products a string y se escribe en el path 
+          fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');
+          console.log(`Carrito con id ${pid} ha sido actualizado.`);  
         } else {
           this.carts[cartIndex].products.push({productId:pid, quantity:1});
           fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');
@@ -103,6 +93,4 @@ deleteCart(Id) {
       }
   });
 }
-}
-
- 
+} 
