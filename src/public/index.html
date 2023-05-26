@@ -9,7 +9,7 @@
 <body>
 
 
-    <h3>BIENVENIDOS A SERVIDOR EFREN. Este formulario es para hacer post, agregar producto. 
+    <h3>BIENVENIDOS A SERVIDOR EFREN. Este formulario es para hacer post, agregar producto. La parte de imagen aún no está implementada.
         <!-- <form action="/api/products" method="POST" enctype="multipart/form-data"> -->
         <form action="/api/products" method="POST" enctype="aplication/json; multipart/form-data">
 
@@ -30,7 +30,7 @@
             <label >Thumbnails: </label>
             <input name="thumbnails">         
 
-            <label>Imagen: </label>
+            <label>Imagen (no enviar imagen): </label>
             <input type="file" name="image"> 
             <!-- respetar image porque es la referencia en todo el codigo -->
             <input type="submit">

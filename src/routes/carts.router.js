@@ -7,6 +7,7 @@ const carts =cartManager.getCarts();
 cartManager.carts=carts;
 
 const ids = carts.map(cart => cart.id);
+console.log("Arreglo con todos los ids disponibles de carritos:");
 console.log(ids);
 if(carts.length!=0){
     CartManager.contador = Math.max(...ids)+1;
@@ -21,7 +22,7 @@ router.get('/:cid', (req,res)=>{
         res.send({error:"El carrito no existe."});
     }   
     else {        
-        res.send({productos:cart.products})};//envia productos dentro de acrrito con id especificado 
+        res.send({productos:cart.products})};//envia productos dentro de carrito con id especificado 
 })
 
 
@@ -49,6 +50,5 @@ router.delete('/', (req,res)=>{
     //este metodo no se utiliza
        
 })
-
 
 export default router; 
