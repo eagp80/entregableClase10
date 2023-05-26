@@ -20,12 +20,34 @@ router.get('/', (req,res)=>{
     res.send(carts); //con este metodo solicitamos usuario
 });
 
+router.get('/:cid', (req,res)=>{
+    const cid=req.params.cid;
+    let cart= cartManager.getCartById(cid); 
+    if(!cart){
+        res.send({error:"El producto no existe."});
+    }   
+    else {
+        
+        res.send({productos:cart.products})}; 
+})
+
 //router.post('/', (req,res)=>{//con este metodo solicitamos crear pet
 router.post('/',(req,res)=>{//si son varios archivos uploader.array('nombre de campos') se almacena en req.files
     cartManager.addCart();
     res.send({status:"ok", message :"Carrito añadido" });
 
 })
+
+router.post('/:cid/product/:pid', (req,res)=>{
+        //con este metodo solicitamos agregar producto pid a carrito cid
+        const cid = req.params.cid;
+        const pid = req.params.pid;       
+       
+        cartManager.updateCart(cid,pid);
+        res.send({status:"ok", message :`Producto ${pid} añadido al carrito ${cid}`});
+    
+    })// falta revisar si se guarda formatos de arreglo de thumbnails y formatos numnber, true y string
+
 router.put('/', (req,res)=>{
     //con este metodo solicitamos actualizar usuario
        

@@ -28,17 +28,17 @@ export default class CartManager {
 
   getCarts() {
     const data = fs.readFileSync(this.path, 'utf-8');
-    const products = JSON.parse(data);
-    return products;
+    const carts = JSON.parse(data);
+    return carts;
   }
 
-  getCartById(Id) {
+  getCartById(Id) {//retornara los productos del carrito 
     const carts =this.getCarts();
-    const product = carts.find((c) => c.id == Id);//ojo no === sino == porque viene de navegador (string)
-        if (product) {
-            return product;
+    const cart = carts.find((c) => c.id == Id);//ojo no === sino == porque viene de navegador (string)
+        if (cart) {
+            return cart;
         } else {
-            console.error(`Not found`); 
+            console.error(`Not found cart`); 
             return;         
         }
     // const indexProduct = this.products.findIndex(p => p.id === Id);
@@ -50,18 +50,31 @@ export default class CartManager {
     // return this.products[indexProduct];
   }
 //Actualizar un producto
-updateCart(Id, { productId, quantity } = {}) {//se inicializa elementos del objeto como undefined...
-  const cartIndex = this.carts.findIndex((c) => c.id == Id);// ... exepto el Id
+updateCart(cid, pid) {
+  const carts =this.getCarts();
+  const cartIndex = carts.findIndex((c) => c.id == cid);
   if (cartIndex !== -1) {
     //falta hacer alguna logica para actualizar algo en carrito
-      const cart = this.carts[cartIndex];//
-      cart.productId = productId||cart.productId; // los campos undefined se ignoran...
-      cart.quantity = quantity || cart.quantity;//...los campos que si reciben un valor si se cambian
-      this.carts[cartIndex] = cart;// se reemplaza  solo el producto con el indice correspondiente pero indice queda igual
-      fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');// el resto del arreglo products queda igual
-      console.log(`Carrito con id ${Id} ha sido actualizado.`); //se pasa el arreglo products a string y se escribe en el path 
+      const cart = carts[cartIndex];//
+      if(cart.products.length>0){
+        const indexProductId = cart.products.findIndex((p)=>p.productId==pid);
+        if(indexProductId !==-1){
+          this.carts[cartIndex].products[indexProductId].quantity++;
+          fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');// el resto del arreglo products queda igual
+          console.log(`Carrito con id ${pid} ha sido actualizado.`); //se pasa el arreglo products a string y se escribe en el path 
+        } else {
+          this.carts[cartIndex].products.push({productId:pid, quantity:1});
+          fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');
+          console.log(`Carrito con id ${pid} ha sido actualizado.`);  
+        }
+      } else {
+        this.carts[cartIndex].products.push({productId:pid, quantity:1});
+        fs.writeFileSync(this.path, JSON.stringify(this.carts), 'utf8');
+        console.log(`Carrito con id ${pid} ha sido actualizado.`);
+      }     
+      
   } else {
-      console.log(`Carrito con código ${Id} no encontrado.`);
+      console.log(`Carrito con código ${pid} no encontrado.`);
   }
 }
 
