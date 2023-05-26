@@ -72,10 +72,10 @@ export default class ProductManager {
     // return this.products[indexProduct];
   }
 //Actualizar un producto
-updateProduct(Id, { title, description,code, price, status, stock, category, thumbnails } = {}) {//se inicializa elementos del objeto como undefined
-  const productIndex = this.products.findIndex((p) => p.id == Id);// exepto el Id
+updateProduct(Id, { title, description,code, price, status, stock, category, thumbnails } = {}) {//se inicializa ...
+  const productIndex = this.products.findIndex((p) => p.id == Id);// ...elementos del objeto como undefined exepto el Id
   if (productIndex !== -1) {
-    console.log(title);
+    //console.log(title);
       const product = this.products[productIndex];//en products cambiaremos solo los campos recibidos
       product.title = title||product.title; // los campos undefined se ignoran
       product.description = description || product.description;//los campos que si reciben un valor si se cambian

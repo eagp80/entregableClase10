@@ -1,19 +1,29 @@
 import {Router} from "express";
 import uploader from "../services/uploader.js";
+import CartManager from "../cartManager.js";
+
+const cartManager = new CartManager("./carts.json");
+const carts =cartManager.getCarts();
+cartManager.carts=carts;
+
+const ids = carts.map(cart => cart.id);
+console.log(ids);
+if(carts.length!=0){
+    CartManager.contador = Math.max(...ids)+1;
+} else {CartManager.contador =1};
+
 const router=Router();
 
 const pets=[{nombre:"gato", edad: 2}];
 router.get('/', (req,res)=>{
-    res.send(pets); //con este metodo solicitamos usuario
+    const carts = cartManager.getCarts();
+    res.send(carts); //con este metodo solicitamos usuario
 });
 
 //router.post('/', (req,res)=>{//con este metodo solicitamos crear pet
-router.post('/', uploader.single('image'),(req,res)=>{//si son varios archivos uploader.array('nombre de campos') se almacena en req.files
-    
-    const pet = req.body;
-    console.log(req.body);
-    pets.push(pet);
-    res.send({status:"ok", message :"pet añadido" });
+router.post('/',(req,res)=>{//si son varios archivos uploader.array('nombre de campos') se almacena en req.files
+    cartManager.addCart();
+    res.send({status:"ok", message :"Carrito añadido" });
 
 })
 router.put('/', (req,res)=>{
