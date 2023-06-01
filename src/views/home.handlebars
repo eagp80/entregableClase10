@@ -6,7 +6,10 @@
 
 <ul>
 {{#each products}}
-<li><p> Nombtre de producto: {{this.title}}. Precio:{{this.price}}</p></li>
+<li><p> Nombtre de producto {{this.id}}: {{this.title}}. Descripción: {{this.description}}. 
+    Código: {{this.code}} Precio:{{this.price}}. Estatus: {{this.status}}.
+    Stock: {{this.stock}}. Categoria: {{this.category}}. Thumbnails: {{this.thumbnails}}.
+</p></li>
 {{/each}}
 </ul>
 

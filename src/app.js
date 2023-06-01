@@ -17,9 +17,9 @@ app.use(express.urlencoded({extended:true}));// permite tener el objeto codifica
 app.use(express.static(`${__dirname}/public`));
 //tengo que servir un archivo estatico? no? continua    
 
-//app.use('/api/products',productsRouter);//conectar con
+app.use('/api/products',productsRouter);//conectar con
 // la peticion coincide con api products ? no? continua
-//app.use('/api/carts',cartsRouter);//conectar con
+app.use('/api/carts',cartsRouter);//conectar con
 // la peticion coincide con api carts ? si? redirigeme a carts routers
 
 app.engine('handlebars', handlebars.engine());//arrancamos y le ponemos un alias a el motor 
