@@ -1,8 +1,10 @@
 import express from "express";
+
+import handlebars from "express-handlebars";
 //import ProductManager from './productManager.js'
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
-import viewsRouter from './route/views.router.js';
+import viewsRouter from './routes/views.router.js';
 import __dirname from './utils.js'
 
 const app = express();
@@ -19,6 +21,11 @@ app.use(express.static(`${__dirname}/public`));
 // la peticion coincide con api products ? no? continua
 //app.use('/api/carts',cartsRouter);//conectar con
 // la peticion coincide con api carts ? si? redirigeme a carts routers
+
+app.engine('handlebars', handlebars.engine());//arrancamos y le ponemos un alias a el motor 
+app.set('views', `${__dirname}/views`);//le decimos a app donde estaran las vistas
+app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas es handlebars
+
 app.use('/',viewsRouter);
 
 
