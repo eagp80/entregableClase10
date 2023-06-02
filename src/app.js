@@ -29,10 +29,11 @@ const serverHTTP = app.listen(8081, ()=>console.log("Servidor Efren en  8081"));
 const io= new Server (serverHTTP);
 
 const productManager = new ProductManager("./products.json");//en directorio de proyecto
+const products = productManager.getProducts();
+productManager.products=products;
 
 io.on('connection', socket=>{
        console.log("cliente conectado");
-       const products = productManager.getProducts();
        io.emit('log',products);  
 
        socket.on('message', data => {
@@ -46,10 +47,10 @@ io.on('connection', socket=>{
               // fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
               io.emit('product', data)
           })            
-       socket.on('post',data=>{
+       // socket.on('post',data=>{
 
-       io.emit('messageLogs', products)
-       })
+       // io.emit('messageLogs', products)
+       // })
        socket.on('put',data=>{
        
        io.emit('messageLogs', products)

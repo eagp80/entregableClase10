@@ -12,8 +12,8 @@ form.addEventListener('submit', e => {
     const price = document.getElementById("price").value;
     const stock = document.getElementById("stock").value;
     const category = document.getElementById("category").value;
-    const thumbnail = document.getElementById("thumbnails").value;
-    const productComplete = { title, description, code, price, stock, category, thumbnail}
+    const thumbnails = document.getElementById("thumbnails").value;
+    const productComplete = { title, description, code, price, stock, category, thumbnails}
     socket.emit('message', productComplete)
 })
 
