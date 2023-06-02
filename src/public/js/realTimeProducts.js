@@ -42,7 +42,7 @@ socket.on('product', data => {
             <td>Categoria: ${data.category}</td>
         </tr>
         <tr>
-            <td>Imagenes: ${data.thumbnail}</td>
+            <td>Imagenes: ${data.thumbnails}</td>
         </tr>
     </table>
     `;

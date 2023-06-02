@@ -37,9 +37,13 @@ io.on('connection', socket=>{
 
        socket.on('message', data => {
               const id = products.length + 1;
-              const product = { id, ...data}
-              products.unshift(product);
-              fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
+               //con este metodo solicitamos crear producto
+              const {title, description, code,price,status, stock, category, thumbnails, image} = data;       
+              productManager.addProduct(title, description, code,price,status, stock, category, thumbnails);
+              //res.send({status:"ok", message :"Producto añadido" });
+              // const product = { id, ...data}
+              // products.unshift(product);
+              // fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
               io.emit('product', data)
           })            
        socket.on('post',data=>{
