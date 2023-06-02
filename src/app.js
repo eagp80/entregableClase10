@@ -1,7 +1,7 @@
 import express from "express";
-
+import {Server} from 'socket.io';
 import handlebars from "express-handlebars";
-//import ProductManager from './productManager.js'
+import ProductManager from './productManager.js'
 import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import viewsRouter from './routes/views.router.js';
@@ -13,20 +13,48 @@ app.use(express.json()); //permite leer json en las peticiones
 //middlewar intercepta la peticion verifica si esta en json, covierte y continua
 app.use(express.urlencoded({extended:true}));// permite tener el objeto codificado desde url
 //middlewar intercepta que este codificada desde una url si no continua
-//app.use(express.static('./src/public'));
-app.use(express.static(`${__dirname}/public`));
-//tengo que servir un archivo estatico? no? continua    
+app.use(express.static(`${__dirname}/public`));//lo que estara disponible, publico
 
-app.use('/api/products',productsRouter);//conectar con
-// la peticion coincide con api products ? no? continua
-app.use('/api/carts',cartsRouter);//conectar con
-// la peticion coincide con api carts ? si? redirigeme a carts routers
-app.use('/',viewsRouter);
+app.use('/api/products',productsRouter);//al llegar la ruta especificada lo procesa con productsRouter
+app.use('/api/carts',cartsRouter);//idem
+
 
 app.engine('handlebars', handlebars.engine());//arrancamos y le ponemos un alias a el motor 
 app.set('views', `${__dirname}/views`);//le decimos a app donde estaran las vistas
-app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas es handlebars
+app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas es handlebars definido dos lineas antes
 
+app.use('/',viewsRouter);//al llegar la ruta especificada lo procesa con viewsRouter
+
+const serverHTTP = app.listen(8081, ()=>console.log("Servidor Efren en  8081"));
+const io= new Server (serverHTTP);
+
+const productManager = new ProductManager("./products.json");//en directorio de proyecto
+
+io.on('connection', socket=>{
+       console.log("cliente conectado");
+       const products = productManager.getProducts();
+       io.emit('log',products);  
+
+       socket.on('message', data => {
+              const id = products.length + 1;
+              const product = { id, ...data}
+              products.unshift(product);
+              fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
+              io.emit('product', data)
+          })            
+       socket.on('post',data=>{
+
+       io.emit('messageLogs', products)
+       })
+       socket.on('put',data=>{
+       
+       io.emit('messageLogs', products)
+})
+// socket.on('authenticated',data=>{
+//        socket.emit('messageLogs', messages);
+//        socket.broadcast.emit('newUserConnected', data);
+// });
+});
 
 
 
@@ -44,16 +72,9 @@ app.set('view engine', 'handlebars');//le decimos a app que el motor de vistas e
 //     <h1 style = "color:green">Encendida ${req.params.LedB} </h1>`)
 // });
 
-app.listen(
-    8080,()=>console.log("Servidor Efren activado en puerto 8080")
-);
-// let usuarios = [
-//     {nombre:"Efren", apellido:"García", edad: 42, correo:"eagp80@gmail.com", genero:"M"},
-//     {nombre:"Raul", apellido:"García", edad: 40, correo:"eagp80@gmail.com", genero:"M"},
-//     {nombre:"Juan", apellido:"García", edad: 38, correo:"eagp80@gmail.com", genero:"M"},
-//     {nombre:"Aldemar", apellido:"García", edad: 45, correo:"eagp80@gmail.com", genero:"M"},
-//     {nombre:"Keli", apellido:"García", edad: 29, correo:"eagp80@gmail.com", genero:"F"},
-//     {nombre:"Karina", apellido:"García", edad: 36, correo:"eagp80@gmail.com", genero:"F"},
+// app.listen(
+//     8080,()=>console.log("Servidor Efren activado en puerto 8080")
+// );
 
 // ]
 // app.get('/ejemploQueries', (req,res)=>{

@@ -8,11 +8,13 @@ productManager.products=products;
 const router= Router();
 
 router.get('/',(req,res)=>{
-    //const products= [];
     res.render('home', {products})
-    //res.render('index')
-
 });
+
+router.get('/realtimeproducts', (req, res) => {
+    res.render('realTimeProducts', {products})
+})
+
 
 
 export default router;
