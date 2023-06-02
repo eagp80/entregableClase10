@@ -4,12 +4,6 @@ const productManager = new ProductManager("./products.json");
 const products =productManager.getProducts();
 productManager.products=products;
 
-const ids = products.map(product => product.id);
-console.log("Arreglo con todos los ids disponibles de productos:");
-console.log(ids);
-if(products.length!=0){
-    ProductManager.contador = Math.max(...ids)+1;
-} else {ProductManager.contador =1};
 
 const router= Router();
 
