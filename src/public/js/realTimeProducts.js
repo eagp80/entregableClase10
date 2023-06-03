@@ -1,7 +1,7 @@
 const socket = io();
 
-const form = document.getElementById('product')
-const productNew = document.getElementById('productNew')
+const form = document.getElementById('product')//formulario donde se añadira nuevo producto
+const productNew = document.getElementById('productNew')//div posicion donde colocaremos producto añadido mediante una tabla
 const productList = document.getElementById('productList')
 
 form.addEventListener('submit', e => {
@@ -17,11 +17,12 @@ form.addEventListener('submit', e => {
     socket.emit('message', productComplete)
 })
 
+//cliente recibe de vuelta el mismo producto enviado para añadir y lo pone en tabla
 socket.on('product', data => {
     productNew.innerHTML =`
     <table style="border: black 1px solid;">
         <tr>
-            <th style="border: black 1px solid;">Producto agregado</th>
+            <th style="border: green 1px solid;">Producto agregado</th>
         </tr>
         <tr>
             <td>Titulo: ${data.title}</td>
@@ -47,7 +48,11 @@ socket.on('product', data => {
     </table>
     `;
 
-    const productNewList = document.createElement("li");
-    productNewList.innerText = `${data.title}: ${data.price}`;
+    const productNewList = document.createElement("li");//se coloca en lista el producto creado
+    productNewList.innerText = `<p> <b> Nombre de producto {{data.id}}: </b> {{data.title}}. Descripción: {{data.description}}. 
+    Código: {{data.code}} Precio:{{data.price}}. Estatus: {{data.status}}.
+    Stock: {{data.stock}}. Categoria: {{data.category}}. Thumbnails: {{data.thumbnails}}.
+    </p>`;
+
     productList.prepend(productNewList);
 })

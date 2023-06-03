@@ -4,7 +4,7 @@
 
 ## Consigna. Se está requiriendo lo siguiente:
 
-Configurar nuestro proyecto para que trabaje con Handlebars y websocket.
+Configurar nuestro proyecto para que trabaje con Handlebars y websocket. en este caso usé puert 8081.
 
 ## Aspectos a incluir
 

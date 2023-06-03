@@ -34,7 +34,7 @@ productManager.products=products;
 
 io.on('connection', socket=>{
        console.log("cliente conectado");
-       io.emit('log',products);  
+       //io.emit('log',products);  
 
        socket.on('message', data => {
               const id = products.length + 1;
