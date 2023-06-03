@@ -48,7 +48,7 @@ socket.on('product', data => {
     </table>
     `;
     
-    productsAgregado += `<ul> <li><p> <b> Nombre de producto ${data.id}: </b> ${data.title}. Descripción: ${data.description}. 
+    productsAgregado += `<ul> <li><p> <b> Nombre de producto (con id: ${data.id}): </b> ${data.title}. Descripción: ${data.description}. 
     Código: ${data.code} Precio: ${data.price}. Estatus: ${data.status}.
     Stock: ${data.stock}. Categoria: ${data.category}. Thumbnails: ${data.thumbnails}.
     </p></li> </ul>`;

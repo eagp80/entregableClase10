@@ -45,6 +45,8 @@ io.on('connection', socket=>{
               // const product = { id, ...data}
               // products.unshift(product);
               // fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
+              data["id"]=ProductManager.contador-1;
+              console.log(data);
               io.emit('product', data)
           })            
        // socket.on('post',data=>{

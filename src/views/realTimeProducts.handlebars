@@ -38,7 +38,7 @@
 
             <ul>
                 {{#each products}}
-                    <li><p> <b> Nombre de producto {{this.id}}: </b> {{this.title}}. Descripción: {{this.description}}. 
+                    <li><p> <b> Nombre de producto (con id: {{this.id}}): </b> {{this.title}}. Descripción: {{this.description}}. 
                     Código: {{this.code}} Precio:{{this.price}}. Estatus: {{this.status}}.
                     Stock: {{this.stock}}. Categoria: {{this.category}}. Thumbnails: {{this.thumbnails}}.
                     </p></li>
@@ -46,12 +46,12 @@
             </ul>
 
         {{else}}
-            <h1> Aun no tenemos productos.</h1>
+            <h1> Aún no tenemos productos. Al añadir productos irán apareciendo aquí abajo:</h1>
         {{/if}}
 
         </div>
         <div id="productList">
-            
+            Aquí aparecerán los productos que se vayan agregando.
         </div>
 
 </main>
