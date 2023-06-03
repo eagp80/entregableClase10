@@ -16,7 +16,7 @@ form.addEventListener('submit', e => {
     const productComplete = { title, description, code, price, stock, category, thumbnails}
     socket.emit('message', productComplete)
 })
-
+var productsAgregado= " ";
 //cliente recibe de vuelta el mismo producto enviado para añadir y lo pone en tabla
 socket.on('product', data => {
     productNew.innerHTML =`
@@ -47,8 +47,8 @@ socket.on('product', data => {
         </tr>
     </table>
     `;
-    let productsAgregado= "";
-    productsAgregado+= `<ul> <li><p> <b> Nombre de producto ${data.id}: </b> ${data.title}. Descripción: ${data.description}. 
+    
+    productsAgregado += `<ul> <li><p> <b> Nombre de producto ${data.id}: </b> ${data.title}. Descripción: ${data.description}. 
     Código: ${data.code} Precio: ${data.price}. Estatus: ${data.status}.
     Stock: ${data.stock}. Categoria: ${data.category}. Thumbnails: ${data.thumbnails}.
     </p></li> </ul>`;
