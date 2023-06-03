@@ -28,11 +28,7 @@
 
         </form>
         <div id="productNew">Nuevo producto añadido aparecerá acá, en una tabla.</div>
-        <ul id="productList">
-            {{#each products}}
-                <li>{{this.title}}: ${{this.price}}</li>
-            {{/each}}
-        </ul>
+        
         {{!-- ***lo de vista home*** --}}
         <div>
 
@@ -54,6 +50,10 @@
         {{/if}}
 
         </div>
+        <div id="productList">
+            
+        </div>
+
 </main>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/realTimeProducts.js"></script>

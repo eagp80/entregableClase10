@@ -47,12 +47,17 @@ socket.on('product', data => {
         </tr>
     </table>
     `;
+    let productsAgregado= "";
+    productsAgregado+= `<ul> <li><p> <b> Nombre de producto ${data.id}: </b> ${data.title}. Descripción: ${data.description}. 
+    Código: ${data.code} Precio: ${data.price}. Estatus: ${data.status}.
+    Stock: ${data.stock}. Categoria: ${data.category}. Thumbnails: ${data.thumbnails}.
+    </p></li> </ul>`;
 
-    const productNewList = document.createElement("li");//se coloca en lista el producto creado
-    productNewList.innerText = `<p> <b> Nombre de producto {{data.id}}: </b> {{data.title}}. Descripción: {{data.description}}. 
-    Código: {{data.code}} Precio:{{data.price}}. Estatus: {{data.status}}.
-    Stock: {{data.stock}}. Categoria: {{data.category}}. Thumbnails: {{data.thumbnails}}.
-    </p>`;
 
-    productList.prepend(productNewList);
+    productList.innerHTML = productsAgregado;
+
+    // const productNewList = document.createElement("li");//se coloca en lista el producto creado
+    // productNewList.innerText = `${data.title}: $${data.price}`;
+
+    // productList.prepend(productNewList);
 })
