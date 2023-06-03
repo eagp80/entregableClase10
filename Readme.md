@@ -31,7 +31,7 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
 - Se instalará y correrá el servidor en el puerto indicado.
     - El servidor debe levantarse sin problema.
 - Se abrirá la ruta raíz
-    - Debe visualizarse el contenido de la vista index.handlebars
+    - Debe visualizarse el contenido de la vista index.handlebars. ((En mi caso usé “home.handlebars”, ya que así decía la consigna al principio)).
     - No se debe activar el websocket aún.
 - Se buscará en la url del navegador la ruta “/realtimeproducts”.
     - Se corroborará que el servidor haya conectado con el cliente, en la consola del servidor deberá mostrarse un mensaje de “cliente conectado”.
