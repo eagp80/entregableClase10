@@ -37,14 +37,18 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
 - Se buscará en la url del navegador la ruta “/realtimeproducts”.
     - Se corroborará que el servidor haya conectado con el cliente, en la consola del servidor deberá mostrarse un mensaje de “cliente conectado”.
     - Se debe mostrar la lista de productos y se corroborará que se esté enviando desde websocket.
-##Rutas:
+## Rutas:
 
--/api/carts/:cid   GET_BY_CID
--/api/carts/   POST
--/api/carts/:cid/product/:pid  POST agregar producto pid a carrito cid
--En api/carts/  No hay PUT ni DELETE
--/api/products/:pid GET_BY_PID, PUT, DELETE
--/api/products/ GET de todos los productos, POST
+- Carritos:
+    - /api/carts/:cid   GET_BY_CID
+    - /api/carts/   POST
+    - /api/carts/:cid/product/:pid  POST agregar producto pid a carrito cid
+    - En api/carts/  No hay PUT ni DELETE
 
--/    GET    Tiene socket.
--/realtimeproducts GET   Tiene socket.
+- Productos:
+    - /api/products/:pid GET_BY_PID, PUT, DELETE
+    - /api/products/ GET de todos los productos, POST
+
+- Socket IO:
+    - /    GET    Tiene socket.
+    - /realtimeproducts GET   Tiene socket.
