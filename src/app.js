@@ -46,6 +46,7 @@ io.on('connection', socket=>{
               // products.unshift(product);
               // fs.writeFileSync('./products.json',JSON.stringify(products, null, '\t'))
               data["id"]=ProductManager.contador-1;
+              console.log("El siguiente producto fue creado desde cliente conectado por socket web");
               console.log(data);
               io.emit('product', data)
           })            

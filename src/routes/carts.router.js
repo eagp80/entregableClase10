@@ -42,7 +42,7 @@ router.post('/:cid/product/:pid', (req,res)=>{
     
     })
 
-router.put('/', (req,res)=>{
+router.put('/:cid', (req,res)=>{
     //este metodo no se utiliza
        
 })

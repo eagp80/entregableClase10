@@ -13,7 +13,8 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
 - Crear una vista “home.handlebars” la cual contenga una lista de todos los productos agregados hasta el momento.
 
 - Además, crear una vista “realTimeProducts.handlebars”, la cual vivirá en el endpoint “/realtimeproducts” en nuestro views router, ésta contendrá la misma lista de productos, sin embargo, ésta trabajará con websockets.
-    - Al trabajar con websockets, cada vez que creemos un producto nuevo, o bien cada vez que eliminemos un producto, se debe actualizar automáticamente en dicha vista la lista.
+
+- Al trabajar con websockets, cada vez que creemos un producto nuevo, o bien cada vez que eliminemos un producto, se debe actualizar automáticamente en dicha vista la lista.
 
 ### Sugerencias
 
@@ -36,3 +37,14 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
 - Se buscará en la url del navegador la ruta “/realtimeproducts”.
     - Se corroborará que el servidor haya conectado con el cliente, en la consola del servidor deberá mostrarse un mensaje de “cliente conectado”.
     - Se debe mostrar la lista de productos y se corroborará que se esté enviando desde websocket.
+##Rutas:
+
+-/api/carts/:cid   GET_BY_CID
+-/api/carts/   POST
+-/api/carts/:cid/product/:pid  POST agregar producto pid a carrito cid
+-En api/carts/  No hay PUT ni DELETE
+-/api/products/:pid GET_BY_PID, PUT, DELETE
+-/api/products/ GET de todos los productos, POST
+
+-/    GET    Tiene socket.
+-/realtimeproducts GET   Tiene socket.
