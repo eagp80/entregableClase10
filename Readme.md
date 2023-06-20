@@ -50,5 +50,5 @@ Configurar nuestro proyecto para que trabaje con Handlebars y websocket. En este
     - /api/products/ GET de todos los productos, POST
 
 - Socket IO:
-    - /    GET    Tiene socket.
-    - /realtimeproducts GET   Tiene socket.
+    - /    GET    Tiene socket. utiliza vista "home.handlebars" y muestra lista de todos los productos.
+    - /realtimeproducts GET   Tiene socket. Vista "realTimeProducts.handlebars" y muestra Lista de productos, alcrfear un producto nuevo lo muestra en Resaltado en una tabla, agraga al final de la lista el neuvo producto.
